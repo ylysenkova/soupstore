@@ -1,5 +1,7 @@
 package com.lysenkova.soapstore.web.servlet;
 
+import com.lysenkova.soapstore.service.ProductService;
+import com.lysenkova.soapstore.service.ProductServiceImpl;
 import com.lysenkova.soapstore.web.templater.PageGenerator;
 
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductServlet extends HttpServlet {
+    ProductService productService = new ProductServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> productMap = new HashMap<>();
