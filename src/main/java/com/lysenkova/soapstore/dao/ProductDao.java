@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProductDao {
     List<Product> getAll() throws IOException;
+    void add(Product product);
 }

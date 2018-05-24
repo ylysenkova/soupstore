@@ -8,8 +8,15 @@
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <title>soapstore</title>
+    <style>
+        .page {
+            background-image: url("http://buzz-netnews.com/wp-content/uploads/2016/04/b7612b71c08547dbd9309a2ec66b0785.jpg");
+            background-size: cover;
+        }
+
+    </style>
 </head>
-<body>
+<body class="page">
 <header class="header">
     <div class="container">
         <nav class="navbar navbar-expand-lg ">
@@ -23,34 +30,32 @@
 </header>
 <div class="container">
     <form action="/product/add" method="POST">
-        <input type="hidden" value="${product.id}" name="id">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">Name: </span>
+                <span class="input-group-text" style="width: 102px">Name: </span>
             </div>
-            <input class="form-control" aria-label="With textarea" name="name" value="${product.name}">
+            <input class="form-control" aria-label="With textarea" name="name">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">Price: </span>
+                <span class="input-group-text" style="width: 102px">Price: </span>
             </div>
-            <input class="form-control" aria-label="With textarea" name="price" value="${product.price}">
+            <input class="form-control" aria-label="With textarea" name="price">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Image link: </span>
             </div>
-            <input class="form-control" aria-label="With textarea" name="imgRef" value="${product.imgRef}">
+            <input class="form-control" aria-label="With textarea" name="imgRef">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-datetime-local" style="width: 100px">Date: </span>
+                <span class="input-group-text" style="width: 102px">Date: </span>
             </div>
-            <input class="form-control" aria-label="With textarea" name="localDateTime"
-                   value="${product.localDateTime}">
+            <input class="form-control" aria-label="With textarea" name="localDateTime">
         </div>
         <div class="button">
-            <button type="submit" class="btn btn-success">Add</button>
+            <button type="submit" class="btn btn-success" style="background-color: cornflowerblue">Add</button>
         </div>
     </form>
 </div>

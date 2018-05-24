@@ -11,7 +11,7 @@
     <style>
 
         .page {
-            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFsJx8FyldlNLTpCC2pmHgi_IIBlNBMESss_7nFeG2-yjqWB2zzw");
+            background-image: url("http://buzz-netnews.com/wp-content/uploads/2016/04/b7612b71c08547dbd9309a2ec66b0785.jpg");
             background-size: cover;
         }
 
@@ -35,8 +35,8 @@
 <body class="page">
 <header class="header">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <nav class="navbar navbar-light">
+        <nav class="navbar navbar-expand-lg">
+            <nav class="navbar">
                 <a class="navbar-brand" href="/products">
                     <img src="https://wonderopolis.org/wp-content/uploads/2017/04/Soapdreamstime_xl_37053010.jpg"
                          width="60"

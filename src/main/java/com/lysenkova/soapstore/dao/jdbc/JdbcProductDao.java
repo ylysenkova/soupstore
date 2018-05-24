@@ -12,6 +12,7 @@ import java.util.List;
 
 public class JdbcProductDao implements ProductDao {
     private final static String GET_ALL_SQL = "select id, name, price, image, date from products";
+    private final static String ADD_PRODUCT_SQL = "insert into products (name, price, image) values (?, ?, ?)";
 
     private final static ProductMapper PRODUCT_MAPPER = new ProductMapper();
 
@@ -33,6 +34,17 @@ public class JdbcProductDao implements ProductDao {
         return products;
     }
 
+    public void add(Product product) {
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(ADD_PRODUCT_SQL)) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setDouble(2, product.getPrice());
+            preparedStatement.setString(3, product.getImgRef());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error during add product.", e);
+        }
+    }
 
     public void setDataSource(MysqlDataSource dataSource) {
         this.dataSource = dataSource;
