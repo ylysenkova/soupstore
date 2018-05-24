@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void add(Product product) {
-
+        productDao.add(product);
     }
 
     public JdbcProductDao getProductDao() {
