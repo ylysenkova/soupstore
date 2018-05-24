@@ -14,7 +14,28 @@
         }
 
         .body {
-            background-color: lavender;
+            background-image: url("https://pixelbox.ru/upload/file/-/clouds_brushes.jpg");
+            background-size: cover;
+        }
+
+        .card {
+            background-color: lightpink;
+        }
+
+        .invisible {
+            visibility: hidden;
+        }
+
+        .card-columns {
+            min-height: 100vh;
+
+        @include media-breakpoint-only(lg) {
+            column-count: 4;
+        }
+        @include media-breakpoint-only(xl) {
+            column-count: 5;
+        }
+
         }
     </style>
 </head>
@@ -36,31 +57,26 @@
         </nav>
     </div>
 </header>
-<main class="body">
+<main class="body ">
     <section class="products container">
-        <table class="table ">
-            <thead>
-            <tr style="text-align: center">
-                <th scope="col"></th>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Production date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <#list products as product>
-            <tr scope="row" style="text-align: center">
-                <td>${product.imgRef}</td>
-                <td>${product.id}</td>
-                <td>${product.name}</td>
-                <td>${product.price}</td>
-                <td>${product.localDateTime}</td>
-            </tr>
-            </
-            #list>
-            </tbody>
-        </table>
+        <div class="card-columns mb-3">
+                    <#list products as product>
+
+                    <#--<div class="row mb-3">-->
+
+                        <div class="card border-secondary" style="width: 18rem;">
+                            <img class="card-img-top" src="${product.imgRef}" alt="picture">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-subtitle">Price:  ${product.price} $</p>
+                            <#--<p class="card-subtitle">Production date: ${product.localDateTime}</p>-->
+                                <p class="card-text invisible">${product.id}</p>
+                            </div>
+                        </div>
+                    <#--</div>-->
+
+                    </#list>
+        </div>
     </section>
 </main>
 

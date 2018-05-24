@@ -1,10 +1,10 @@
-package com.lysenkova.soapstore.service;
+package com.lysenkova.soapstore.dao;
 
 import com.lysenkova.soapstore.entity.Product;
 
 import java.io.IOException;
 import java.util.List;
 
-public interface ProductService {
+public interface ProductDao {
     List<Product> getAll() throws IOException;
 }
