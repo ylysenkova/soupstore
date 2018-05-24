@@ -9,21 +9,14 @@
 
     <title>soapstore</title>
     <style>
-        .header {
-            background-color: lavender;
-        }
 
-        .body {
-            background-image: url("https://pixelbox.ru/upload/file/-/clouds_brushes.jpg");
+        .page {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFsJx8FyldlNLTpCC2pmHgi_IIBlNBMESss_7nFeG2-yjqWB2zzw");
             background-size: cover;
         }
 
         .card {
-            background-color: lightpink;
-        }
-
-        .invisible {
-            visibility: hidden;
+            background-color: lightcyan;
         }
 
         .card-columns {
@@ -39,20 +32,28 @@
         }
     </style>
 </head>
-<body>
+<body class="page">
 <header class="header">
     <div class="container">
-        <nav class="navbar navbar-expand-lg ">
-            <a class="navbar-brand" href="/products">
-                <img src="https://wonderopolis.org/wp-content/uploads/2017/04/Soapdreamstime_xl_37053010.jpg" width="30"
-                     height="30" class="d-inline-block align-top">
-                Soap World
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="/products/Add">Add<span
-                            class="sr-only">(current)</span></a>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="/products">
+                    <img src="https://wonderopolis.org/wp-content/uploads/2017/04/Soapdreamstime_xl_37053010.jpg"
+                         width="60"
+                         height="60" class="d-inline-block align-center">
+                    Soap World
+                </a>
+            </nav>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product/add">Add</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>
@@ -70,7 +71,7 @@
                                 <h5 class="card-title">${product.name}</h5>
                                 <p class="card-subtitle">Price:  ${product.price} $</p>
                             <#--<p class="card-subtitle">Production date: ${product.localDateTime}</p>-->
-                                <p class="card-text invisible">${product.id}</p>
+                                <p class="card-text d-none">${product.id}</p>
                             </div>
                         </div>
                     <#--</div>-->

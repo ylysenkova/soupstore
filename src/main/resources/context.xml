@@ -1,0 +1,13 @@
+<beans>
+    <bean id="productDao" class="com.lysenkova.soapstore.dao.jdbc.JdbcProductDao"/>
+    <bean id="productService" class="com.lysenkova.soapstore.service.impl.ProductServiceImpl">
+        <property name="productDao" ref="productDao"/>
+    </bean>
+    <bean id="loginServlet" class="com.lysenkova.soapstore.web.servlet.LoginServlet"/>
+    <bean id="productServlet" class="com.lysenkova.soapstore.web.servlet.ProductServlet">
+        <property name="productService" ref="productService"/>
+    </bean>
+    <bean id="addProductServlet" class="com.lysenkova.soapstore.web.servlet.AddProductServlet">
+        <property name="productService" ref="productService"/>
+    </bean>
+</beans>
