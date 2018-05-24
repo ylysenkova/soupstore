@@ -1,13 +1,9 @@
 package com.lysenkova.soapstore.service.impl;
 
-import com.lysenkova.ioc.applicationcontext.ApplicationContext;
-import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
-import com.lysenkova.soapstore.dao.ProductDao;
 import com.lysenkova.soapstore.dao.jdbc.JdbcProductDao;
 import com.lysenkova.soapstore.entity.Product;
 import com.lysenkova.soapstore.service.ProductService;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
@@ -15,16 +11,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return getProductDao().getAll();
+        return productDao.getAll();
     }
 
     @Override
     public void add(Product product) {
         productDao.add(product);
-    }
-
-    public JdbcProductDao getProductDao() {
-        return productDao;
     }
 
     public void setProductDao(JdbcProductDao productDao) {

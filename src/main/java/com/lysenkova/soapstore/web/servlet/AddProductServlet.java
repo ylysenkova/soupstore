@@ -1,13 +1,9 @@
 package com.lysenkova.soapstore.web.servlet;
 
-import com.lysenkova.ioc.applicationcontext.ApplicationContext;
-import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
 import com.lysenkova.soapstore.entity.Product;
-import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
 import com.lysenkova.soapstore.web.templater.PageGenerator;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,11 +37,7 @@ public class AddProductServlet extends HttpServlet {
         product.setImgRef(request.getParameter("imgRef"));
         Timestamp timestamp = Timestamp.valueOf(request.getParameter("localDateTime"));
         product.setLocalDateTime(timestamp.toLocalDateTime());
-        getProductService().add(product);
-    }
-
-    public ProductServiceImpl getProductService() {
-        return productService;
+        productService.add(product);
     }
 
     public void setProductService(ProductServiceImpl productService) {
