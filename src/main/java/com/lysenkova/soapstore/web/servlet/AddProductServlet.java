@@ -3,6 +3,8 @@ package com.lysenkova.soapstore.web.servlet;
 import com.lysenkova.soapstore.entity.Product;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
 import com.lysenkova.soapstore.web.templater.PageGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddProductServlet extends HttpServlet {
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private ProductServiceImpl productService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        LOGGER.info("Get request in AddProductServlet");
         Map<String, Object> addProductMap = new HashMap<>();
 
         response.getWriter().println(PageGenerator.instance().getPage("add.ftl", addProductMap));
@@ -25,6 +29,7 @@ public class AddProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        LOGGER.info("Post request in AddProductServlet");
         addProduct(request);
         response.sendRedirect("/products");
     }

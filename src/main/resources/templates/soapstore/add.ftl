@@ -52,7 +52,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width: 102px">Date: </span>
             </div>
-            <input class="form-control" aria-label="With textarea" name="localDateTime">
+            <input class="form-control" aria-label="With textarea" name="localDateTime" placeholder="dd.mm.yyyy">
         </div>
         <div class="button">
             <button type="submit" class="btn btn-success" style="background-color: cornflowerblue">Add</button>
