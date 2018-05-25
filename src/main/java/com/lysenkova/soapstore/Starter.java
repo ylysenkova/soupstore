@@ -3,6 +3,7 @@ package com.lysenkova.soapstore;
 import com.lysenkova.ioc.applicationcontext.ApplicationContext;
 import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
 import com.lysenkova.soapstore.dao.jdbc.JdbcProductDao;
+import com.lysenkova.soapstore.dao.jdbc.JdbcUserDao;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
 import com.lysenkova.soapstore.web.servlet.AddProductServlet;
@@ -20,6 +21,7 @@ public class Starter {
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = new ClassPathApplicationContext("src\\main\\resources\\context.xml");
         JdbcProductDao productDao = applicationContext.getBean(JdbcProductDao.class);
+        JdbcUserDao userDao = applicationContext.getBean(JdbcUserDao.class);
         ProductServiceImpl productService = applicationContext.getBean(ProductServiceImpl.class);
         LoginServlet loginServlet = applicationContext.getBean(LoginServlet.class);
         ProductServlet productServlet = applicationContext.getBean(ProductServlet.class);
@@ -34,6 +36,7 @@ public class Starter {
         dataSource.setPassword(properties.getProperty("database.password"));
         productDao.setDataSource(dataSource);
         productService.setProductDao(productDao);
+        userDao.setDataSource(dataSource);
 
 
 

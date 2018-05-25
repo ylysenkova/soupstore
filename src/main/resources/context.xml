@@ -10,4 +10,5 @@
     <bean id="addProductServlet" class="com.lysenkova.soapstore.web.servlet.AddProductServlet">
         <property name="productService" ref="productService"/>
     </bean>
+    <bean id="userDao" class="com.lysenkova.soapstore.dao.jdbc.JdbcUserDao"/>
 </beans>
