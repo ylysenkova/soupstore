@@ -30,6 +30,9 @@
         }
 
         }
+        .date {
+            pattern = "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
     </style>
 </head>
 <body class="page">
@@ -70,7 +73,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
                                 <p class="card-subtitle">Price:  ${product.price} $</p>
-                            <#--<p class="card-subtitle">Production date: ${product.localDateTime}</p>-->
+                                <p class="card-subtitle">Production date: <#setting date_format="dd-MM-yyyy"> <#setting locale="en_US"> <#assign createdOn = product.localDateTime>${product.localDateTime?datetime("iso m nz")?date}</p>
                                 <p class="card-text d-none">${product.id}</p>
                             </div>
                         </div>
