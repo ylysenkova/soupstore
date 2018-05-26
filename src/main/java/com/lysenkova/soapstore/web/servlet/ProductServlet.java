@@ -1,7 +1,7 @@
 package com.lysenkova.soapstore.web.servlet;
 
 import com.lysenkova.soapstore.entity.Product;
-import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
+import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.web.templater.PageGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,11 @@ import java.util.Map;
 
 public class ProductServlet extends HttpServlet {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-    private ProductServiceImpl productService;
+    private ProductService productService;
+
+    public ProductServlet(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,7 +34,4 @@ public class ProductServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    public void setProductService(ProductServiceImpl productService) {
-        this.productService = productService;
-    }
 }

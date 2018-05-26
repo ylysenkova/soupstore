@@ -3,15 +3,11 @@
     <bean id="productService" class="com.lysenkova.soapstore.service.impl.ProductServiceImpl">
         <property name="productDao" ref="productDao"/>
     </bean>
-    <bean id="loginServlet" class="com.lysenkova.soapstore.web.servlet.LoginServlet"/>
-    <bean id="productServlet" class="com.lysenkova.soapstore.web.servlet.ProductServlet">
-        <property name="productService" ref="productService"/>
-    </bean>
-    <bean id="addProductServlet" class="com.lysenkova.soapstore.web.servlet.AddProductServlet">
-        <property name="productService" ref="productService"/>
-    </bean>
     <bean id="userDao" class="com.lysenkova.soapstore.dao.jdbc.JdbcUserDao"/>
     <bean id="userService" class="com.lysenkova.soapstore.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="securityService" class="com.lysenkova.soapstore.service.impl.SecurityServiceImpl">
+        <property name="userService" ref="userService"/>
     </bean>
 </beans>

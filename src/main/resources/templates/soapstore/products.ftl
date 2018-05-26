@@ -57,6 +57,9 @@
                         <a class="nav-link" href="/product/add">Add</a>
                     </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0">
+                        <a class="nav-link" href="/login">Logout</a>
+                </form>
             </div>
         </nav>
     </div>

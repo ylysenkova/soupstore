@@ -27,15 +27,15 @@ public class JdbcUserDao implements UserDao {
     public List<User> getAll() {
         LOGGER.info("Getting all users is started.");
         List<User> users = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(GET_ALL_USERS_SQL)) {
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(GET_ALL_USERS_SQL)) {
 
             while (resultSet.next()) {
                 User user = USER_MAPPER.mapRow(resultSet);
                 users.add(user);
             }
-
+            LOGGER.trace("Users are getted {}", users);
         } catch (SQLException e) {
             LOGGER.error("SQL error during getting users {}", users);
             throw new RuntimeException("SQL error during getting users.", e);
