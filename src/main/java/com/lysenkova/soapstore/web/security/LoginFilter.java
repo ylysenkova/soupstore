@@ -1,7 +1,6 @@
 package com.lysenkova.soapstore.web.security;
 
 import com.lysenkova.soapstore.service.UserService;
-import com.lysenkova.soapstore.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
