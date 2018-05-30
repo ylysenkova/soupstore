@@ -13,6 +13,11 @@ public class UserServiceImpl implements UserService {
         return userDao.getAll();
     }
 
+    @Override
+    public User getById() {
+        return userDao.getById();
+    }
+
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
