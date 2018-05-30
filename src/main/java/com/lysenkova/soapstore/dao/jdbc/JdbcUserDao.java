@@ -8,15 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcUserDao implements UserDao {
     private final static String GET_ALL_USERS_SQL = "select id, login, password from users";
+    private final static String GET_USER_BY_ID = "select id, login, password from users where id = ?";
 
     private final UserMapper USER_MAPPER = new UserMapper();
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
@@ -41,6 +39,21 @@ public class JdbcUserDao implements UserDao {
             throw new RuntimeException("SQL error during getting users.", e);
         }
         return users;
+    }
+
+    @Override
+    public User getById(long id) {
+        LOGGER.info("Getting user by id is started.");
+        User user = new User();
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID)) {
+            preparedStatement.setLong(1, user.getId());
+            LOGGER.info("User with id: {} is got", user.getId());
+        } catch (SQLException e) {
+            LOGGER.error("Error during getting user by id.");
+            throw new RuntimeException("Error during getting user by id.", e);
+        }
+        return user;
     }
 
     public void setDataSource(MysqlDataSource dataSource) {
