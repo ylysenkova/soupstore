@@ -30,9 +30,7 @@
         }
 
         }
-        .date {
-            pattern = "[0-9]{4}-[0-9]{2}-[0-9]{2}"
-        }
+
     </style>
 </head>
 <body class="page">
