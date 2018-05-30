@@ -16,7 +16,7 @@ public class JdbcProductDao implements ProductDao {
     private final static String GET_ALL_SQL = "select id, name, price, image, date from products";
     private final static String ADD_PRODUCT_SQL = "insert into products (name, price, image) values (?, ?, ?)";
 
-    private final static ProductMapper PRODUCT_MAPPER = new ProductMapper();
+    private final ProductMapper PRODUCT_MAPPER = new ProductMapper();
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     private DataSource dataSource;
@@ -48,9 +48,9 @@ public class JdbcProductDao implements ProductDao {
             preparedStatement.setDouble(2, product.getPrice());
             preparedStatement.setString(3, product.getImgRef());
             preparedStatement.executeUpdate();
-            LOGGER.debug("Added product {}", product);
+            LOGGER.info("Added product {}", product);
         } catch (SQLException e) {
-            LOGGER.error("SQL error during add product {}", product);
+            LOGGER.error("SQL error during add product.", e);
             throw new RuntimeException("SQL error during add product.", e);
         }
     }

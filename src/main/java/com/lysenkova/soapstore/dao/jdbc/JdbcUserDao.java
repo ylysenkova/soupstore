@@ -18,7 +18,7 @@ import java.util.List;
 public class JdbcUserDao implements UserDao {
     private final static String GET_ALL_USERS_SQL = "select id, login, password from users";
 
-    private final static UserMapper USER_MAPPER = new UserMapper();
+    private final UserMapper USER_MAPPER = new UserMapper();
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     private DataSource dataSource;
@@ -35,9 +35,9 @@ public class JdbcUserDao implements UserDao {
                 User user = USER_MAPPER.mapRow(resultSet);
                 users.add(user);
             }
-            LOGGER.trace("Users are getted {}", users);
+            LOGGER.trace("Users are got {}", users);
         } catch (SQLException e) {
-            LOGGER.error("SQL error during getting users {}", users);
+            LOGGER.error("SQL error during getting users.");
             throw new RuntimeException("SQL error during getting users.", e);
         }
         return users;

@@ -15,8 +15,8 @@ CREATE TABLE products (
   id    BIGINT AUTO_INCREMENT,
   name  VARCHAR(100),
   price DOUBLE,
-  image VARCHAR (500),
-  date  DATETIME CURRENT_TIMESTAMP ,
+  image_ref VARCHAR (500),
+  date  DATETIME DEFAULT CURRENT_TIMESTAMP ,
 
   PRIMARY KEY (id)
 );
