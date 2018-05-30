@@ -16,7 +16,7 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public Optional<String> getToken(String login, String password) {
         LOGGER.info("User with login {} trying to log in", login);
-        User user = userService.getById();
+        User user = userService.getByLogin(login);
             if (login.equals(user.getLogin()) && password.equals(user.getPassword())) {
                 LOGGER.info("User {} has logged in.", user.getLogin());
                 String uuid = UUID.randomUUID().toString();
