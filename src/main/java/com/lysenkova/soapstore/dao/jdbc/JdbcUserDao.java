@@ -14,7 +14,7 @@ import java.util.List;
 
 public class JdbcUserDao implements UserDao {
     private final static String GET_ALL_USERS_SQL = "select id, login, password from users";
-    private final static String GET_USER_BY_ID = "select id, login, password from users where id = ?";
+    private final static String GET_USER_BY_LOGIN = "select id, login, password from users where login = ?";
 
     private final UserMapper USER_MAPPER = new UserMapper();
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
@@ -42,16 +42,16 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User getById(long id) {
-        LOGGER.info("Getting user by id is started.");
+    public User getById(String login) {
+        LOGGER.info("Getting user by login is started.");
         User user = new User();
         try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID)) {
-            preparedStatement.setLong(1, user.getId());
-            LOGGER.info("User with id: {} is got", user.getId());
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)) {
+            preparedStatement.setString(1, user.getLogin());
+            LOGGER.info("User with login: {} is got", user.getLogin());
         } catch (SQLException e) {
-            LOGGER.error("Error during getting user by id.");
-            throw new RuntimeException("Error during getting user by id.", e);
+            LOGGER.error("Error during getting user by login.");
+            throw new RuntimeException("Error during getting user by login.", e);
         }
         return user;
     }
