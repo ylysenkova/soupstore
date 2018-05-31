@@ -5,25 +5,18 @@ import com.lysenkova.soapstore.service.ProductService;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 
 public class ImageServlet extends HttpServlet {
-    private static final String RESOURCE_DIR = "src/main/resources";
 
-    private ProductService productService;
-
-    public ImageServlet(ProductService productService) {
-        this.productService = productService;
-    }
+    public ImageServlet(ProductService productService) {}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String imageURL = request.getRequestURI();
+        String imageURL = getPath(request);
         if (imageURL != null) {
-            try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(RESOURCE_DIR + imageURL));
+            try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(imageURL));
                  BufferedOutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
                 int value;
                 while ((value = inputStream.read()) != -1) {
@@ -34,5 +27,14 @@ public class ImageServlet extends HttpServlet {
         } else {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
+    }
+
+    private String getPath(HttpServletRequest request) {
+        String path = request.getRequestURI().substring(1);
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL url = classLoader.getResource(path);
+        File file = new File(url.getPath());
+        path = file.getAbsolutePath();
+        return path;
     }
 }
