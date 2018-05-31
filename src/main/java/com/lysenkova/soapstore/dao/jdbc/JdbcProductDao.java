@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcProductDao implements ProductDao {
-    private final static String GET_ALL_SQL = "select id, name, price, image, date from products";
-    private final static String ADD_PRODUCT_SQL = "insert into products (name, price, image) values (?, ?, ?)";
+    private final static String GET_ALL_SQL = "select id, name, price, image_ref, date from products";
+    private final static String ADD_PRODUCT_SQL = "insert into products (name, price, image_ref) values (?, ?, ?)";
 
     private final ProductMapper PRODUCT_MAPPER = new ProductMapper();
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());

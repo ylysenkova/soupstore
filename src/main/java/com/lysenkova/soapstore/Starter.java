@@ -24,7 +24,7 @@ import java.util.Properties;
 
 public class Starter {
     public static void main(String[] args) throws Exception {
-        ApplicationContext applicationContext = new ClassPathApplicationContext("src\\main\\resources\\context.xml");
+        ApplicationContext applicationContext = new ClassPathApplicationContext("context.xml");
         JdbcProductDao productDao = applicationContext.getBean(JdbcProductDao.class);
         JdbcUserDao userDao = applicationContext.getBean(JdbcUserDao.class);
         ProductServiceImpl productService = applicationContext.getBean(ProductServiceImpl.class);

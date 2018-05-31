@@ -20,10 +20,17 @@ public class JdbcUserDaoTest {
 
     @Test
     public void getAll() {
-
         List<User> users = userDao.getAll();
         for (User user : users) {
             assertNotNull(user);
         }
+    }
+
+    @Test
+    public void getByLogin() {
+        User userTest = new User();
+        userTest.setLogin("main");
+        User user = userDao.getByLogin("main");
+        assertEquals(userTest.getLogin(), user.getLogin());
     }
 }

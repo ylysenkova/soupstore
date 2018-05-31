@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
+import java.util.Optional;
 
 public class LoginServlet extends HttpServlet {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
@@ -40,13 +40,10 @@ public class LoginServlet extends HttpServlet {
     private HttpServletResponse sendUuidToCookie(HttpServletRequest request, HttpServletResponse response) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        Map<String, String> loginPasswordMap = new HashMap<>();
-        loginPasswordMap.put(login, password);
         LOGGER.info("Checking if User with login {} authorized", login);
-        UUID uuid = securityService.validateUser(loginPasswordMap);
-        if (uuid != null) {
-            String userToken = uuid.toString();
-            Cookie cookie = new Cookie("user-token", userToken);
+        Optional<String> token = securityService.getToken(login, password);
+        if (token.isPresent()) {
+            Cookie cookie = new Cookie("user-token", token.get());
             cookie.setMaxAge(1800);
             response.addCookie(cookie);
         } else {

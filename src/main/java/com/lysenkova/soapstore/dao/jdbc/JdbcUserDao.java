@@ -42,13 +42,16 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User getById(String login) {
+    public User getByLogin(String login) {
         LOGGER.info("Getting user by login is started.");
-        User user = new User();
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)) {
-            preparedStatement.setString(1, user.getLogin());
-            LOGGER.info("User with login: {} is got", user.getLogin());
+        User user = null;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)) {
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.first();
+            user = USER_MAPPER.mapRow(resultSet);
+            LOGGER.info("User with login: {} is got", login);
         } catch (SQLException e) {
             LOGGER.error("Error during getting user by login.");
             throw new RuntimeException("Error during getting user by login.", e);
