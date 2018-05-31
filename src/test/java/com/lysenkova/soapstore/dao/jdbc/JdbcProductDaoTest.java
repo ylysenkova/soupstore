@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -12,11 +13,11 @@ import static org.junit.Assert.*;
 public class JdbcProductDaoTest {
     private JdbcProductDao productDao = new JdbcProductDao();
 
-    @Before
-    public void before() throws IOException {
-        ConfigurationDataBase config = new ConfigurationDataBase();
-        productDao.setDataSource(config.injectDataSource());
-    }
+        @Before
+        public void before() throws IOException {
+            ConfigurationDataBase config = new ConfigurationDataBase();
+            productDao.setDataSource(config.injectDataSource());
+        }
 
     @Test
     public void getAll(){

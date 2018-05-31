@@ -3,11 +3,12 @@ package com.lysenkova.soapstore.dao.jdbc;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConfigurationDataBase {
     public MysqlDataSource injectDataSource() throws IOException {
-        String propertiesUrl = "/db/database.properties";
+        String propertiesUrl = "/database.properties";
         Properties properties = new Properties();
         properties.load(String.class.getResourceAsStream(propertiesUrl));
         MysqlDataSource dataSource = new MysqlDataSource();

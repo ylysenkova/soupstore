@@ -55,7 +55,7 @@ public class JdbcProductDao implements ProductDao {
         }
     }
 
-    public void setDataSource(MysqlDataSource dataSource) {
+    public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 }

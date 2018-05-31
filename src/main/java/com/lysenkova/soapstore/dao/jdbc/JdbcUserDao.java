@@ -44,7 +44,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User getByLogin(String login) {
         LOGGER.info("Getting user by login is started.");
-        User user = null;
+        User user ;
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)) {
             preparedStatement.setString(1, login);
@@ -59,7 +59,7 @@ public class JdbcUserDao implements UserDao {
         return user;
     }
 
-    public void setDataSource(MysqlDataSource dataSource) {
+    public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 }

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ public class JdbcUserDaoTest {
     private JdbcUserDao userDao = new JdbcUserDao();
 
     @Before
-    public void before() throws IOException {
+    public void before() throws IOException, SQLException {
         ConfigurationDataBase config = new ConfigurationDataBase();
         userDao.setDataSource(config.injectDataSource());
     }

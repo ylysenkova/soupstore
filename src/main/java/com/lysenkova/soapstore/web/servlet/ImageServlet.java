@@ -12,24 +12,24 @@ import java.io.IOException;
 
 public class ImageServlet extends HttpServlet {
     private static final String RESOURCE_DIR = "src/main/resources";
-    private ProductService productService;
 
-    public ImageServlet(ProductService productService) {
-        this.productService = productService;
+    public ImageServlet() {
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String imageURL = request.getRequestURI();
-        if(imageURL!=null) {
-            try(BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(RESOURCE_DIR + imageURL));
-                BufferedOutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
+        if (imageURL != null) {
+            try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(RESOURCE_DIR + imageURL));
+                 BufferedOutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
                 int value;
-                while ((value=inputStream.read())!=-1) {
-                 outputStream.write(value);
+                while ((value = inputStream.read()) != -1) {
+                    outputStream.write(value);
                 }
                 outputStream.flush();
             }
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 }
