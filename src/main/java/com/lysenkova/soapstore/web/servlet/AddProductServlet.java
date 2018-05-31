@@ -27,7 +27,7 @@ public class AddProductServlet extends HttpServlet {
         LOGGER.info("Get request in AddProductServlet");
         Map<String, Object> addProductMap = new HashMap<>();
 
-        response.getWriter().println(PageGenerator.instance().getPage("add.ftl", addProductMap));
+        response.getWriter().println(PageGenerator.instance().getPage("add.html", addProductMap));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

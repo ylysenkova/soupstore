@@ -13,7 +13,10 @@ import java.io.IOException;
 public class ImageServlet extends HttpServlet {
     private static final String RESOURCE_DIR = "src/main/resources";
 
-    public ImageServlet() {
+    private ProductService productService;
+
+    public ImageServlet(ProductService productService) {
+        this.productService = productService;
     }
 
     @Override

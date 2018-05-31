@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("Get request in LoginServlet");
         Map<String, Object> pageGeneratorMap = new HashMap<>();
-        response.getWriter().println(PageGenerator.instance().getPage("login.ftl", pageGeneratorMap));
+        response.getWriter().println(PageGenerator.instance().getPage("login.html", pageGeneratorMap));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

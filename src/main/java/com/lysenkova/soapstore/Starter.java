@@ -2,10 +2,6 @@ package com.lysenkova.soapstore;
 
 import com.lysenkova.ioc.applicationcontext.ApplicationContext;
 import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
-import com.lysenkova.soapstore.dao.ProductDao;
-import com.lysenkova.soapstore.dao.UserDao;
-import com.lysenkova.soapstore.dao.jdbc.JdbcProductDao;
-import com.lysenkova.soapstore.dao.jdbc.JdbcUserDao;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.SecurityService;
 import com.lysenkova.soapstore.service.UserService;
@@ -17,7 +13,6 @@ import com.lysenkova.soapstore.web.servlet.AddProductServlet;
 import com.lysenkova.soapstore.web.servlet.ImageServlet;
 import com.lysenkova.soapstore.web.servlet.LoginServlet;
 import com.lysenkova.soapstore.web.servlet.ProductServlet;
-import com.mysql.cj.jdbc.MysqlDataSource;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -25,7 +20,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
-import java.util.Properties;
 
 public class Starter {
     public static void main(String[] args) throws Exception {
@@ -50,7 +44,7 @@ public class Starter {
         context.addServlet(new ServletHolder(new LoginServlet(securityService)), "/login");
         context.addServlet(new ServletHolder(new ProductServlet(productService)), "/products");
         context.addServlet(new ServletHolder(new AddProductServlet(productService)), "/product/add");
-        context.addServlet(new ServletHolder(new ImageServlet()), "/image/*");
+        context.addServlet(new ServletHolder(new ImageServlet(productService)), "/assets/image/*");
         context.addFilter(new FilterHolder(new LoginFilter(userService)), "/*", EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST));
 
 

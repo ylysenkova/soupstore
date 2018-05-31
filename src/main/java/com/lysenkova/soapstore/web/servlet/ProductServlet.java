@@ -30,7 +30,7 @@ public class ProductServlet extends HttpServlet {
 
         List<Product> products = productService.getAll();
         productMap.put("products", products);
-        response.getWriter().println(PageGenerator.instance().getPage("products.ftl", productMap));
+        response.getWriter().println(PageGenerator.instance().getPage("products.html", productMap));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
