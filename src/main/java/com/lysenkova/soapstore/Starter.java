@@ -10,7 +10,7 @@ import com.lysenkova.soapstore.service.impl.SecurityServiceImpl;
 import com.lysenkova.soapstore.service.impl.UserServiceImpl;
 import com.lysenkova.soapstore.web.security.LoginFilter;
 import com.lysenkova.soapstore.web.servlet.AddProductServlet;
-import com.lysenkova.soapstore.web.servlet.ImageServlet;
+import com.lysenkova.soapstore.web.servlet.AssetsServlet;
 import com.lysenkova.soapstore.web.servlet.LoginServlet;
 import com.lysenkova.soapstore.web.servlet.ProductServlet;
 import org.eclipse.jetty.server.Server;
@@ -44,7 +44,7 @@ public class Starter {
         context.addServlet(new ServletHolder(new LoginServlet(securityService)), "/login");
         context.addServlet(new ServletHolder(new ProductServlet(productService)), "/products");
         context.addServlet(new ServletHolder(new AddProductServlet(productService)), "/product/add");
-        context.addServlet(new ServletHolder(new ImageServlet(productService)), "/assets/image/*");
+        context.addServlet(new ServletHolder(new AssetsServlet(productService)), "/assets/*");
         context.addFilter(new FilterHolder(new LoginFilter(userService)), "/*", EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST));
 
 

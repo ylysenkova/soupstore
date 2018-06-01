@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URL;
 
-public class ImageServlet extends HttpServlet {
+public class AssetsServlet extends HttpServlet {
 
-    public ImageServlet(ProductService productService) {}
+    public AssetsServlet(ProductService productService) {}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String imageURL = getPath(request);
+        String imageURL = getFilePath(request);
         if (imageURL != null) {
             try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(imageURL));
                  BufferedOutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
@@ -29,11 +28,10 @@ public class ImageServlet extends HttpServlet {
         }
     }
 
-    private String getPath(HttpServletRequest request) {
+    private String getFilePath(HttpServletRequest request) {
         String path = request.getRequestURI().substring(1);
         ClassLoader classLoader = getClass().getClassLoader();
-        URL url = classLoader.getResource(path);
-        File file = new File(url.getPath());
+        File file = new File(classLoader.getResource(path).getPath());
         path = file.getAbsolutePath();
         return path;
     }

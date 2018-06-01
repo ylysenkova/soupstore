@@ -3,11 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 
     <title>soapstore</title>
-
 </head>
 <body class="page">
 <header class="header">
@@ -42,7 +41,7 @@
     <section class="products container">
         <div class="card-columns mb-3">
                     <#list products as product>
-                        <div class="card border-secondary"">
+                        <div class="card border-secondary">
                             <img class="card-img-top" src="${product.imgRef}" alt="picture">
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
