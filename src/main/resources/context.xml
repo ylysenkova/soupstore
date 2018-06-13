@@ -12,9 +12,9 @@
         <property name="userDao" ref="userDao"/>
 
     </bean>
-    <bean id="securityService" class="com.lysenkova.soapstore.service.impl.SecurityServiceImpl">
-        <property name="userService" ref="userService"/>
-    </bean>
+    <!--<bean id="securityService" class="com.lysenkova.soapstore.service.impl.SecurityServiceImpl">-->
+        <!--<property name="userService" ref="userService"/>-->
+    <!--</bean>-->
     <bean id="dataSource" class="com.mysql.cj.jdbc.MysqlDataSource">
         <property name="url" value="jdbc:mysql://localhost:3306/soapstore"/>
         <property name="user" value="root"/>

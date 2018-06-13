@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.TimeZone;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;

@@ -25,9 +25,7 @@ public class AddProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("Get request in AddProductServlet");
-        Map<String, Object> addProductMap = new HashMap<>();
-
-        response.getWriter().println(PageGenerator.instance().getPage("add.html", addProductMap));
+        response.getWriter().println(PageGenerator.instance().getPage("add.html", new HashMap<>()));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

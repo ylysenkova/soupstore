@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html" charset=UTF-8" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -14,24 +14,24 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="/products">
-                <img src="https://wonderopolis.org/wp-content/uploads/2017/04/Soapdreamstime_xl_37053010.jpg" width="30"
+                <img src="https://img.etimg.com/thumb/msid-33836946,width-300,imgsize-49933,resizemode-4/soaps-detergents-wash-away-a-chunk-of-fmcg-growth.jpg" width="30"
                      height="30" class="d-inline-block align-top">
                 Soap World
             </a>
         </nav>
     </div>
 </header>
-<div class="container">
+<div class="container fields">
     <form action="/product/add" method="POST">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" style="width: 102px">Name: </span>
+                <span class="input-group-text">Name: </span>
             </div>
             <input class="form-control" aria-label="With textarea" name="name">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" style="width: 102px">Price: </span>
+                <span class="input-group-text">Price: </span>
             </div>
             <input class="form-control" aria-label="With textarea" name="price">
         </div>
@@ -42,7 +42,7 @@
             <input class="form-control" aria-label="With textarea" name="imgRef">
         </div>
         <div class="button">
-            <button type="submit" class="btn btn-success" style="background-color: cornflowerblue">Add</button>
+            <button type="submit" class="btn">Add</button>
         </div>
     </form>
 </div>

@@ -6,13 +6,9 @@ import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.SecurityService;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
-import com.lysenkova.soapstore.service.impl.SecurityServiceImpl;
 import com.lysenkova.soapstore.service.impl.UserServiceImpl;
 import com.lysenkova.soapstore.web.security.LoginFilter;
-import com.lysenkova.soapstore.web.servlet.AddProductServlet;
-import com.lysenkova.soapstore.web.servlet.AssetsServlet;
-import com.lysenkova.soapstore.web.servlet.LoginServlet;
-import com.lysenkova.soapstore.web.servlet.ProductServlet;
+import com.lysenkova.soapstore.web.servlet.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -28,7 +24,7 @@ public class Starter {
 //        UserDao userDao = applicationContext.getBean(JdbcUserDao.class);
         ProductService productService = applicationContext.getBean(ProductServiceImpl.class);
         UserService userService = applicationContext.getBean(UserServiceImpl.class);
-        SecurityService securityService = applicationContext.getBean(SecurityServiceImpl.class);
+//        SecurityService securityService = applicationContext.getBean(SecurityServiceImpl.class);
 
 //        String propertiesUrl = "/db/database.properties";
 //        Properties properties = new Properties();
@@ -41,7 +37,7 @@ public class Starter {
 //        userDao.setDataSource(dataSource);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(new LoginServlet(securityService)), "/login");
+        context.addServlet(new ServletHolder(new LoginServlet(userService)), "/login");
         context.addServlet(new ServletHolder(new ProductServlet(productService)), "/products");
         context.addServlet(new ServletHolder(new AddProductServlet(productService)), "/product/add");
         context.addServlet(new ServletHolder(new AssetsServlet(productService)), "/assets/*");
