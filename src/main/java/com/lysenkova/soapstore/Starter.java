@@ -3,7 +3,6 @@ package com.lysenkova.soapstore;
 import com.lysenkova.ioc.applicationcontext.ApplicationContext;
 import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
 import com.lysenkova.soapstore.service.ProductService;
-import com.lysenkova.soapstore.service.SecurityService;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
 import com.lysenkova.soapstore.service.impl.UserServiceImpl;
