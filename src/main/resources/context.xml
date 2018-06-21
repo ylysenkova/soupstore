@@ -15,9 +15,10 @@
     <!--<bean id="securityService" class="com.lysenkova.soapstore.service.impl.SecurityServiceImpl">-->
         <!--<property name="userService" ref="userService"/>-->
     <!--</bean>-->
+    <bean id="beanFactoryPostProcessor" class="com.lysenkova.soapstore.dao.utils.DataBaseConnectionBeanFactoryPostProcessor"/>
     <bean id="dataSource" class="com.mysql.cj.jdbc.MysqlDataSource">
-        <property name="url" value="jdbc:mysql://localhost:3306/soapstore"/>
-        <property name="user" value="root"/>
-        <property name="password" value="root"/>
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/soapstore"/>-->
+        <!--<property name="user" value="root"/>-->
+        <!--<property name="password" value="root"/>-->
     </bean>
 </beans>

@@ -2,6 +2,7 @@ package com.lysenkova.soapstore;
 
 import com.lysenkova.ioc.applicationcontext.ApplicationContext;
 import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
+import com.lysenkova.soapstore.dao.utils.DataBaseConnectionBeanFactoryPostProcessor;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
@@ -19,21 +20,8 @@ import java.util.EnumSet;
 public class Starter {
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = new ClassPathApplicationContext("context.xml");
-//        ProductDao productDao = applicationContext.getBean(JdbcProductDao.class);
-//        UserDao userDao = applicationContext.getBean(JdbcUserDao.class);
         ProductService productService = applicationContext.getBean(ProductServiceImpl.class);
         UserService userService = applicationContext.getBean(UserServiceImpl.class);
-//        SecurityService securityService = applicationContext.getBean(SecurityServiceImpl.class);
-
-//        String propertiesUrl = "/db/database.properties";
-//        Properties properties = new Properties();
-//        properties.load(String.class.getResourceAsStream(propertiesUrl));
-//        MysqlDataSource dataSource = new MysqlDataSource();
-//        dataSource.setURL(properties.getProperty("database.url"));
-//        dataSource.setUser(properties.getProperty("database.username"));
-//        dataSource.setPassword(properties.getProperty("database.password"));
-//        productDao.setDataSource(dataSource);
-//        userDao.setDataSource(dataSource);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new LoginServlet(userService)), "/login");

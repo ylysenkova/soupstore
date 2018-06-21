@@ -16,7 +16,7 @@ public class JdbcUserDaoTest {
     @Before
     public void before() throws IOException, SQLException {
         ConfigurationDataBase config = new ConfigurationDataBase();
-        userDao.setDataSource(config.injectDataSource());
+        userDao.setDataSource(config.getDataSource());
     }
 
     @Test

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConfigurationDataBase {
-    public MysqlDataSource injectDataSource() throws IOException {
+    public MysqlDataSource getDataSource() throws IOException {
         String propertiesUrl = "/database.properties";
         Properties properties = new Properties();
         properties.load(String.class.getResourceAsStream(propertiesUrl));
