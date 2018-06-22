@@ -3,7 +3,6 @@ package com.lysenkova.soapstore.dao.jdbc;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConfigurationDataBase {

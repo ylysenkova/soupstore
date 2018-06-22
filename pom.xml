@@ -48,11 +48,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.23</version>
-        </dependency>
-        <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>9.3.0.M0</version>
@@ -90,15 +85,6 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- test database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.197</version>
-            <scope>test</scope>
-        </dependency>
-
 
     </dependencies>
 
