@@ -3,8 +3,11 @@ package com.lysenkova.soapstore.web.servlet;
 import com.lysenkova.soapstore.entity.Product;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.web.templater.PageGenerator;
+import com.lysenkova.soapstore.web.templater.ThymeleafConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +28,9 @@ public class AddProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("Get request in AddProductServlet");
-        response.getWriter().println(PageGenerator.instance().getPage("add.html", new HashMap<>()));
+        TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
+        WebContext context = new WebContext(request, response, request.getServletContext());
+        templateEngine.process("add.html", context, response.getWriter());
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

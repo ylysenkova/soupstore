@@ -26,16 +26,13 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("Get request in ProductServlet");
-//        Map<String, Object> productMap = new HashMap<>();
 
         List<Product> products = productService.getAll();
-//        productMap.put("products", products);
-        TemplateEngine templateEngine = ThymeleafConfig.templateEngine(request.getServletContext());
+        TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
         WebContext context = new WebContext(request, response, request.getServletContext());
         context.setVariable("products", products);
         templateEngine.process("products.html", context, response.getWriter());
 
-//        response.getWriter().println(PageGenerator.instance().getPage("products.html", productMap));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

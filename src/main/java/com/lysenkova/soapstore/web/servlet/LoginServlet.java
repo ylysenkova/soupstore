@@ -5,8 +5,11 @@ import com.lysenkova.soapstore.entity.User;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.web.security.PasswordGenerator;
 import com.lysenkova.soapstore.web.templater.PageGenerator;
+import com.lysenkova.soapstore.web.templater.ThymeleafConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +33,9 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("Get request in LoginServlet");
         removeToken(request, response);
-        response.getWriter().println(PageGenerator.instance().getPage("login.html", new HashMap<>()));
+        TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
+        WebContext context = new WebContext(request, response, request.getServletContext(), request.getLocale());
+        templateEngine.process("login", context, response.getWriter());
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

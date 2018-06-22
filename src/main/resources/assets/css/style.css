@@ -86,13 +86,38 @@
     background-size: cover;
 }
 
-.table {
-    background-color: lightcyan;
+.grid {
+    display: grid;
+    grid-template-columns: 250px 250px [main] 250px 250px;
+    grid-template-rows: 250px [top] 50px 50px 50px;
+    grid-auto-columns: 250px;
+    grid-gap: 10px;
 }
 
-.card-columns {
+/*.table {*/
+    /*background-color: lightcyan;*/
+/*}*/
 
-    min-height: 100vh;
+.name {
+    grid-column: main;
+    grid-row: 2;
+}
+
+.price {
+    grid-column: main;
+    grid-row: 3;
+}
+
+.date {
+    grid-column: main;
+    grid-row: 4;
+}
+
+img.img-top {
+    grid-row: top;
+    grid-column: main;
+    width: 100%;
+    height: auto;
 }
 
 .input-group-text {
