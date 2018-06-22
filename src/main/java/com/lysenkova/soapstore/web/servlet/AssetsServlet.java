@@ -1,7 +1,5 @@
 package com.lysenkova.soapstore.web.servlet;
 
-import com.lysenkova.soapstore.service.ProductService;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +7,7 @@ import java.io.*;
 
 public class AssetsServlet extends HttpServlet {
 
-    public AssetsServlet(ProductService productService) {}
+    public AssetsServlet() {}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

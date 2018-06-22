@@ -2,7 +2,6 @@ package com.lysenkova.soapstore;
 
 import com.lysenkova.ioc.applicationcontext.ApplicationContext;
 import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
-import com.lysenkova.soapstore.dao.utils.DataBaseConnectionBeanFactoryPostProcessor;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
@@ -27,7 +26,7 @@ public class Starter {
         context.addServlet(new ServletHolder(new LoginServlet(userService)), "/login");
         context.addServlet(new ServletHolder(new ProductServlet(productService)), "/products");
         context.addServlet(new ServletHolder(new AddProductServlet(productService)), "/product/add");
-        context.addServlet(new ServletHolder(new AssetsServlet(productService)), "/assets/*");
+        context.addServlet(new ServletHolder(new AssetsServlet()), "/assets/*");
         context.addFilter(new FilterHolder(new LoginFilter(userService)), "/*", EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST));
 
 

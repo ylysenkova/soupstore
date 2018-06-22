@@ -3,7 +3,6 @@ package com.lysenkova.soapstore.dao.jdbc;
 import com.lysenkova.soapstore.dao.ProductDao;
 import com.lysenkova.soapstore.dao.mapper.ProductMapper;
 import com.lysenkova.soapstore.entity.Product;
-import com.mysql.cj.jdbc.MysqlDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

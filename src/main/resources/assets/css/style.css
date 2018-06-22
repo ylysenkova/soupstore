@@ -32,17 +32,17 @@
     border-radius: 2px;
 }
 
-.login-form {
+#login {
     width: 350px;
     margin: 30px auto;
     text-align: center;
 }
 
-.login-form .text-center {
+#login.text-center {
     margin: 10px 0 25px;
 }
 
-.login-form form {
+#login form {
     color: #7a7a7a;
     border-radius: 3px;
     margin-bottom: 15px;
@@ -51,7 +51,7 @@
     padding: 30px;
 }
 
-.login-form .btn {
+#login .btn {
     font-size: 16px;
     font-weight: bold;
     background: plum;
@@ -59,25 +59,25 @@
     outline: none !important;
 }
 
-.login-form .btn:hover, .login-form .btn:focus {
+#login .btn:hover, #login .btn:focus {
     background: lavender;
 }
 
-.login-form a {
+#login a {
     color: #fff;
     text-decoration: underline;
 }
 
-.login-form a:hover {
+#login a:hover {
     text-decoration: none;
 }
 
-.login-form form a {
+#login form a {
     color: #7a7a7a;
     text-decoration: none;
 }
 
-.login-form form a:hover {
+#login form a:hover {
     text-decoration: underline;
 }
 
@@ -93,10 +93,6 @@
     grid-auto-columns: 250px;
     grid-gap: 10px;
 }
-
-/*.table {*/
-    /*background-color: lightcyan;*/
-/*}*/
 
 .name {
     grid-column: main;

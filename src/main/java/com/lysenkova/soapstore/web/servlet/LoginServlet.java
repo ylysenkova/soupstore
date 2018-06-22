@@ -4,7 +4,6 @@ import com.google.common.hash.Hashing;
 import com.lysenkova.soapstore.entity.User;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.web.security.PasswordGenerator;
-import com.lysenkova.soapstore.web.templater.PageGenerator;
 import com.lysenkova.soapstore.web.templater.ThymeleafConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 public class LoginServlet extends HttpServlet {
