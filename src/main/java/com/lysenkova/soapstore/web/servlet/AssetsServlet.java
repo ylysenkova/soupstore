@@ -20,6 +20,8 @@ public class AssetsServlet extends HttpServlet {
                     outputStream.write(value);
                 }
                 outputStream.flush();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         } else {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);

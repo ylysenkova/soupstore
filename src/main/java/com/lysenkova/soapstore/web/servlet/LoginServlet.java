@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         removeToken(request, response);
         TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
         WebContext context = new WebContext(request, response, request.getServletContext(), request.getLocale());
-        templateEngine.process("login", context, response.getWriter());
+        templateEngine.process("login.html", context, response.getWriter());
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

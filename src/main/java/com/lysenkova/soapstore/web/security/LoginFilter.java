@@ -39,7 +39,9 @@ public class LoginFilter implements Filter {
 
         }
         if (!"/login".equals(servletRequest.getRequestURI()) && !flag) {
-            servletResponse.sendRedirect("/login");
+            if (!servletRequest.getRequestURI().startsWith("/assets/")) {
+                servletResponse.sendRedirect("/login");
+            }
         }
         LOGGER.info("Cookies {}", cookies);
         chain.doFilter(servletRequest, servletResponse);
