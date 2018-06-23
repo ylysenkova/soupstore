@@ -7,5 +7,5 @@ import java.util.List;
 public interface UserService {
     List<User> getAll();
 
-    User getByLogin(String login);
+    User getByLogin(String login) ;
 }

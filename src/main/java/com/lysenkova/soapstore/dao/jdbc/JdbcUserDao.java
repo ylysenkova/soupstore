@@ -1,6 +1,7 @@
 package com.lysenkova.soapstore.dao.jdbc;
 
 import com.lysenkova.soapstore.dao.UserDao;
+import com.lysenkova.soapstore.exception.UserNotFoundException;
 import com.lysenkova.soapstore.dao.mapper.UserMapper;
 import com.lysenkova.soapstore.entity.User;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class JdbcUserDao implements UserDao {
             LOGGER.info("User with login: {} is got", login);
         } catch (SQLException e) {
             LOGGER.error("Error during getting user by login.");
-            throw new RuntimeException("Error during getting user by login.", e);
+            throw new UserNotFoundException("Error during getting user by login.", e);
         }
         return user;
     }

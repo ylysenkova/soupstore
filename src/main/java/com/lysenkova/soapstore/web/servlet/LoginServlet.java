@@ -2,6 +2,7 @@ package com.lysenkova.soapstore.web.servlet;
 
 import com.google.common.hash.Hashing;
 import com.lysenkova.soapstore.entity.User;
+import com.lysenkova.soapstore.exception.UserNotFoundException;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.web.security.PasswordGenerator;
 import com.lysenkova.soapstore.web.templater.ThymeleafConfig;
@@ -47,7 +48,7 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         LOGGER.info("Checking if User with login {} authorized", login);
-        Optional<String> token = getToken(login, password);
+        Optional<String> token = getToken(login, password, response);
         if (token.isPresent()) {
             Cookie cookie = new Cookie("user-token", token.get());
             cookie.setMaxAge(1800);
@@ -55,18 +56,27 @@ public class LoginServlet extends HttpServlet {
         } else {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
-//        return response;
     }
 
-    private Optional<String> getToken(String login, String password) {
+    private Optional<String> getToken(String login, String password, HttpServletResponse response) {
         LOGGER.info("User with login {} trying to log in", login);
-        User user = userService.getByLogin(login);
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
-        String hashedPassword = passwordGenerator.hashPassword(password);
-        if (login.equals(user.getLogin()) && hashedPassword.equals(user.getPassword())) {
-            LOGGER.info("User {} has logged in.", user.getLogin());
-            String token = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
-            return Optional.of(token);
+        try {
+            User user = userService.getByLogin(login);
+            PasswordGenerator passwordGenerator = new PasswordGenerator();
+            String hashedPassword = passwordGenerator.hashPassword(password);
+            if (login.equals(user.getLogin()) && hashedPassword.equals(user.getPassword())) {
+                LOGGER.info("User {} has logged in.", user.getLogin());
+                String token = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+                return Optional.of(token);
+            }
+        }catch (UserNotFoundException ex) {
+            try {
+                LOGGER.info("Incorrect username: {} or password.", login);
+                response.sendRedirect("/login");
+            } catch (IOException e) {
+                LOGGER.error("Error during redirect to login page");
+                throw new RuntimeException("Error during redirect to login page", e);
+            }
         }
         return Optional.empty();
     }
