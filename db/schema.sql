@@ -7,6 +7,7 @@ CREATE TABLE users (
   id         BIGINT AUTO_INCREMENT,
   login      VARCHAR(100),
   password   VARCHAR(100),
+  salt       VARCHAR(100)
 
   PRIMARY KEY (id)
 );

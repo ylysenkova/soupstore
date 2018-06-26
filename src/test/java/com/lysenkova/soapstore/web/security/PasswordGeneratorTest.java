@@ -9,10 +9,10 @@ public class PasswordGeneratorTest {
     @Test
     public void hashPassword() {
         String password = "notmain44";
-        String expected = "d5c224cbd4d1dafdf186d0e6de515ac46027373a949613ff51d434cb74f88f41";
+        String salt = "75424845";
+        String expected = "c43f93e65fd77e0acd94c9a56c7183918c16fb9a22420cdd6dce005cb227a3a3";
         PasswordGenerator passwordGenerator = new PasswordGenerator();
-        String actual = passwordGenerator.hashPassword(password);
-//        System.out.println(actual);
+        String actual = passwordGenerator.hashPassword(password, salt);
         assertEquals(expected, actual);
     }
 }

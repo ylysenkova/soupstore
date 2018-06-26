@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
         try {
             User user = userService.getByLogin(login);
             PasswordGenerator passwordGenerator = new PasswordGenerator();
-            String hashedPassword = passwordGenerator.hashPassword(password);
+            String hashedPassword = passwordGenerator.hashPassword(password, user.getSalt());
             if (login.equals(user.getLogin()) && hashedPassword.equals(user.getPassword())) {
                 LOGGER.info("User {} has logged in.", user.getLogin());
                 String token = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();

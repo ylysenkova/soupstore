@@ -11,6 +11,7 @@ public class UserMapper  {
         user.setId(resultSet.getLong("id"));
         user.setLogin(resultSet.getString("login"));
         user.setPassword(resultSet.getString("password"));
+        user.setSalt(resultSet.getString("salt"));
         return user;
     }
 }

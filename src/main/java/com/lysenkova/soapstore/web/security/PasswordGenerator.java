@@ -8,12 +8,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PasswordGenerator {
 
-    public String hashPassword(String password) {
+    public String hashPassword(String password, String salt) {
         checkNotNull(password);
-        return getHash(password);
+        return getHash(password, salt);
     }
 
-    private String getHash(String password) {
-        return Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    private String getHash(String password, String salt) {
+        return Hashing.sha256().hashString(salt + password, StandardCharsets.UTF_8).toString();
     }
 }

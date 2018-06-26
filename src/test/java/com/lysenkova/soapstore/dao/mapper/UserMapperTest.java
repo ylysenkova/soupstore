@@ -20,11 +20,13 @@ public class UserMapperTest {
         when(mockResultSet.getLong("id")).thenReturn(1L);
         when(mockResultSet.getString("login")).thenReturn("login");
         when(mockResultSet.getString("password")).thenReturn("password");
+        when(mockResultSet.getString("salt")).thenReturn("salt");
         User actual = userMapper.mapRow(mockResultSet);
 
         assertNotNull(userMapper);
         assertEquals(1L, actual.getId());
         assertEquals("login", actual.getLogin());
         assertEquals("password", actual.getPassword());
+        assertEquals("salt", actual.getSalt());
     }
 }
