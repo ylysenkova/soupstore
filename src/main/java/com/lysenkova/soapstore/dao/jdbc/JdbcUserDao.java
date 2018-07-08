@@ -1,6 +1,7 @@
 package com.lysenkova.soapstore.dao.jdbc;
 
 import com.lysenkova.soapstore.dao.UserDao;
+import com.lysenkova.soapstore.exception.NotUniqueElementException;
 import com.lysenkova.soapstore.exception.UserNotFoundException;
 import com.lysenkova.soapstore.dao.mapper.UserMapper;
 import com.lysenkova.soapstore.entity.User;
@@ -48,10 +49,15 @@ public class JdbcUserDao implements UserDao {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)) {
             preparedStatement.setString(1, login);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.first();
-            user = USER_MAPPER.mapRow(resultSet);
-            LOGGER.info("User with login: {} is got", login);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                resultSet.next();
+                user = USER_MAPPER.mapRow(resultSet);
+                if (resultSet.next()) {
+                    LOGGER.error("Not unique user: {}", user);
+                    throw new NotUniqueElementException("Not unique user.");
+                }
+                LOGGER.info("User with login: {} is got", login);
+            }
         } catch (SQLException e) {
             LOGGER.error("Error during getting user by login.");
             throw new UserNotFoundException("Error during getting user by login.", e);

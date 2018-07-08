@@ -1,21 +1,26 @@
 package com.lysenkova.soapstore.web.templater;
 
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class ThymeleafConfig {
 
     public static TemplateEngine templateEngine() {
-        TemplateEngine engine = new TemplateEngine();
+        final TemplateEngine engine = new TemplateEngine();
         engine.addDialect(new Java8TimeDialect());
         engine.setTemplateResolver(templateResolver());
         return engine;
+    }
+
+    public static void getPage(String page, WebContext context, HttpServletResponse response) throws IOException {
+        TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
+        templateEngine.process(page, context, response.getWriter());
     }
 
     private static ITemplateResolver templateResolver() {

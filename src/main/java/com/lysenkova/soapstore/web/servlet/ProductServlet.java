@@ -5,7 +5,6 @@ import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.web.templater.ThymeleafConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.http.HttpServlet;
@@ -27,13 +26,12 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("Get request in ProductServlet");
 
+        response.setStatus(HttpServletResponse.SC_OK);
         List<Product> products = productService.getAll();
-        TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
         WebContext context = new WebContext(request, response, request.getServletContext());
         context.setVariable("products", products);
-        templateEngine.process("products.html", context, response.getWriter());
+        ThymeleafConfig.getPage("products.html", context, response);
 
-        response.setStatus(HttpServletResponse.SC_OK);
     }
 
 }

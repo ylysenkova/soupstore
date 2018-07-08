@@ -4,13 +4,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URL;
 
 public class AssetsServlet extends HttpServlet {
 
     public AssetsServlet() {}
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String imageURL = getFilePath(request);
         if (imageURL != null) {
             try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(imageURL));
@@ -31,7 +32,11 @@ public class AssetsServlet extends HttpServlet {
     private String getFilePath(HttpServletRequest request) {
         String path = request.getRequestURI().substring(1);
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(path).getPath());
+        URL pathUrl = classLoader.getResource(path);
+        if (pathUrl == null) {
+            throw new RuntimeException("Can not find path.");
+        }
+        File file = new File(pathUrl.getPath());
         path = file.getAbsolutePath();
         return path;
     }

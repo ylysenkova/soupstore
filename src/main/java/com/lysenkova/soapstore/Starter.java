@@ -24,10 +24,11 @@ public class Starter {
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new LoginServlet(userService)), "/login");
+        context.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
         context.addServlet(new ServletHolder(new ProductServlet(productService)), "/products");
         context.addServlet(new ServletHolder(new AddProductServlet(productService)), "/product/add");
         context.addServlet(new ServletHolder(new AssetsServlet()), "/assets/*");
-        context.addFilter(new FilterHolder(new LoginFilter(userService)), "/*", EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST));
+        context.addFilter(new FilterHolder(new LoginFilter()), "/*", EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST));
 
 
         Server server = new Server(8080);
