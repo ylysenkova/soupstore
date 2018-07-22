@@ -130,6 +130,11 @@ img.img-top {
     background: skyblue;
 }
 
+.navbar-expand-lg {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media (max-width: 767px) {
     .d-flex {
         flex-direction: column;
