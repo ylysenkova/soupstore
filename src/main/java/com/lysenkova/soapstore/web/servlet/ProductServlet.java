@@ -30,7 +30,7 @@ public class ProductServlet extends HttpServlet {
         List<Product> products = productService.getAll();
         WebContext context = new WebContext(request, response, request.getServletContext());
         context.setVariable("products", products);
-        ThymeleafConfig.getPage("products.html", context, response);
+        ThymeleafConfig.process("products.html", context, response);
 
     }
 

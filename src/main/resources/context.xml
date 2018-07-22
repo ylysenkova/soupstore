@@ -16,5 +16,5 @@
         <property name="url" value="${database.url}"/>
         <property name="user" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
-    </bean>
+    </bean>0
 </beans>

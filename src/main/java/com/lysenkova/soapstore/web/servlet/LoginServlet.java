@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         LOGGER.info("Get request in LoginServlet");
         response.setStatus(HttpServletResponse.SC_OK);
         WebContext context = new WebContext(request, response, request.getServletContext(), request.getLocale());
-        ThymeleafConfig.getPage("login.html", context, response);
+        ThymeleafConfig.process("login.html", context, response);
     }
 
     @Override
@@ -42,18 +42,19 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         LOGGER.info("Checking if User with login {} authorized", login);
-        Optional<String> token = getToken(login, password, response);
+        Optional<String> token = getToken(login, password);
         if (token.isPresent()) {
             Cookie cookie = new Cookie("user-token", token.get());
             cookie.setMaxAge(1800);
             response.addCookie(cookie);
+            response.sendRedirect("/products");
+
         } else {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.sendRedirect("/login");
         }
-        response.sendRedirect("/products");
     }
 
-    private Optional<String> getToken(String login, String password, HttpServletResponse response) throws IOException {
+    private Optional<String> getToken(String login, String password) {
         LOGGER.info("User with login {} trying to log in", login);
         try {
             User user = userService.getByLogin(login);
@@ -65,7 +66,6 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (UserNotFoundException ex) {
             LOGGER.info("Incorrect username: {} or password.", login);
-            response.sendRedirect("/login");
         }
         return Optional.empty();
     }

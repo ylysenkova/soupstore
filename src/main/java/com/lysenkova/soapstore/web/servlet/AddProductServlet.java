@@ -26,7 +26,7 @@ public class AddProductServlet extends HttpServlet {
         LOGGER.info("Get request in AddProductServlet");
         response.setStatus(HttpServletResponse.SC_OK);
         WebContext context = new WebContext(request, response, request.getServletContext());
-        ThymeleafConfig.getPage("add.html", context, response);
+        ThymeleafConfig.process("add.html", context, response);
     }
 
     @Override

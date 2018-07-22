@@ -4,8 +4,6 @@ import com.lysenkova.ioc.applicationcontext.ApplicationContext;
 import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.UserService;
-import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
-import com.lysenkova.soapstore.service.impl.UserServiceImpl;
 import com.lysenkova.soapstore.web.security.LoginFilter;
 import com.lysenkova.soapstore.web.servlet.*;
 import org.eclipse.jetty.server.Server;
@@ -19,8 +17,8 @@ import java.util.EnumSet;
 public class Starter {
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = new ClassPathApplicationContext("context.xml");
-        ProductService productService = applicationContext.getBean(ProductServiceImpl.class);
-        UserService userService = applicationContext.getBean(UserServiceImpl.class);
+        ProductService productService = applicationContext.getBean(ProductService.class);
+        UserService userService = applicationContext.getBean(UserService.class);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new LoginServlet(userService)), "/login");

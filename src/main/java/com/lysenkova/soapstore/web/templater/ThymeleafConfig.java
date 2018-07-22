@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ThymeleafConfig {
+    private static final TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
 
-    public static TemplateEngine templateEngine() {
+    private static TemplateEngine templateEngine() {
         final TemplateEngine engine = new TemplateEngine();
         engine.addDialect(new Java8TimeDialect());
         engine.setTemplateResolver(templateResolver());
         return engine;
     }
 
-    public static void getPage(String page, WebContext context, HttpServletResponse response) throws IOException {
-        TemplateEngine templateEngine = ThymeleafConfig.templateEngine();
+    public static void process(String page, WebContext context, HttpServletResponse response) throws IOException {
         templateEngine.process(page, context, response.getWriter());
     }
 

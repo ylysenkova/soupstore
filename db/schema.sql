@@ -1,7 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS soapstore
 CHARACTER SET utf8
 COLLATE utf8_general_ci;
-COMMIT;
 
 CREATE TABLE users (
   id         BIGINT AUTO_INCREMENT,

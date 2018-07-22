@@ -8,6 +8,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 .body {
     font-family: Jua, sans-serif;
 }
@@ -82,31 +83,36 @@
 }
 
 .page {
-    background-image: url("http://buzz-netnews.com/wp-content/uploads/2016/04/b7612b71c08547dbd9309a2ec66b0785.jpg");
-    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background: linear-gradient(150deg, #CCFFFF, #FFCCCC);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 250px 250px [main] 250px 250px;
-    grid-template-rows: 250px [top] 50px 50px 50px;
-    grid-auto-columns: 250px;
-    grid-gap: 10px;
+.flex__element {
+    background-color: #c6e3e8;
+    box-shadow: 0 5px 10px;
+    margin: 10px;
+}
+
+.flex__element:hover {
+    transform: scale(1.1);
+}
+
+hr {
+    margin-bottom: 0px;
 }
 
 .name {
-    grid-column: main;
-    grid-row: 2;
+    font-size: 27px;
 }
 
-.price {
-    grid-column: main;
-    grid-row: 3;
-}
-
-.date {
-    grid-column: main;
-    grid-row: 4;
+p {
+    margin: 0;
+    color: #596066;
 }
 
 img.img-top {
@@ -123,3 +129,34 @@ img.img-top {
 .fields .btn {
     background: skyblue;
 }
+
+@media (max-width: 767px) {
+    .d-flex {
+        flex-direction: column;
+    }
+    .flex__element {
+        display: flex;
+        flex-direction: row;
+    }
+    .img {
+        width: 50%;
+    }
+    .content {
+        margin-left: 10px;
+    }
+    hr {
+        display: none;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .d-flex {
+        flex-direction: row
+    }
+    .flex__element {
+        flex-direction: row;
+    }
+}
+
+
