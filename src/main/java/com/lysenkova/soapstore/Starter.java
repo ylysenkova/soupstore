@@ -1,7 +1,7 @@
 package com.lysenkova.soapstore;
 
-import com.lysenkova.ioc.applicationcontext.ApplicationContext;
-import com.lysenkova.ioc.applicationcontext.ClassPathApplicationContext;
+import com.lysenkova.ioc.context.ApplicationContext;
+import com.lysenkova.ioc.context.ClassPathApplicationContext;
 import com.lysenkova.soapstore.service.ProductService;
 import com.lysenkova.soapstore.service.UserService;
 import com.lysenkova.soapstore.web.security.LoginFilter;

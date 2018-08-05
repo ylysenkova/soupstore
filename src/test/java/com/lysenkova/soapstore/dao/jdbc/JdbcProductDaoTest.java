@@ -22,9 +22,7 @@ public class JdbcProductDaoTest {
     public void getAll(){
         List<Product> products = productDao.getAll();
         for (Product product : products) {
-            assertNotNull(product.getId());
             assertNotNull(product.getName());
-            assertNotNull(product.getPrice());
             assertNotNull(product.getImgRef());
             assertNotNull(product.getLocalDateTime());
         }
