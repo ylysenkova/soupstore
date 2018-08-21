@@ -92,13 +92,13 @@
     background: linear-gradient(150deg, #CCFFFF, #FFCCCC);
 }
 
-.flex__element {
+.products__element {
     background-color: #c6e3e8;
     box-shadow: 0 5px 10px;
     margin: 10px;
 }
 
-.flex__element:hover {
+.products__element:hover {
     transform: scale(1.1);
 }
 
@@ -110,7 +110,7 @@ hr {
     font-size: 27px;
 }
 
-p {
+.products__field {
     margin: 0;
     color: #596066;
 }
@@ -136,10 +136,10 @@ img.img-top {
 }
 
 @media (max-width: 767px) {
-    .d-flex {
+    .products {
         flex-direction: column;
     }
-    .flex__element {
+    .products__element {
         display: flex;
         flex-direction: row;
     }
@@ -156,10 +156,10 @@ img.img-top {
 
 
 @media (min-width: 768px) {
-    .d-flex {
+    .products {
         flex-direction: row
     }
-    .flex__element {
+    .products__element {
         flex-direction: row;
     }
 }

@@ -31,17 +31,17 @@
     </header>
     <main class="body">
         <div class="container">
-            <div class="d-flex">
-                <div class="flex__element p-2" th:each="product : ${products}">
+            <div class="products d-flex">
+                <div class="products__element flex__element p-2" th:each="product : ${products}">
                     <div class="img">
                         <img class="img-top" th:src="${product.imgRef}" alt="picture">
                     </div>
                     <div class="content">
                         <hr>
-                        <p class="name" th:text="${product.name}"></p>
-                        <p class="price" th:text="|Price: ${product.price}|"></p>
-                        <p th:hidden="${product.id}"></p>
-                        <p class="date"
+                        <p class="products__field name" th:text="${product.name}"></p>
+                        <p class="products__field price" th:text="|Price: ${product.price}|"></p>
+                        <p class="products__field " th:hidden="${product.id}"></p>
+                        <p class="products__field date"
                            th:text="|Production date: ${#temporals.format(product.localDateTime, 'dd-MM-yyyy')}|"></p>
                     </div>
                 </div>
