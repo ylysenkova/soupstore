@@ -40,14 +40,11 @@ public class AddProductServlet extends HttpServlet {
         Product product = new Product();
 
         product.setName(request.getParameter("name"));
-        product.setPrice(Double.parseDouble(request.getParameter("price").replace(",", ".")));
+        String price = request.getParameter("price").replace(",", ".");
+        product.setPrice(Double.parseDouble(price));
         product.setImgRef(request.getParameter("imgRef"));
         Timestamp timestamp = Timestamp.valueOf(request.getParameter("localDateTime"));
         product.setLocalDateTime(timestamp.toLocalDateTime());
         productService.add(product);
     }
-
-//    public void setProductService(ProductServiceImpl.java productService) {
-//        this.productService = productService;
-//    }
 }

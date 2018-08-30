@@ -1,30 +1,29 @@
 package com.lysenkova.soapstore.web.servlet;
 
+import com.google.common.io.ByteStreams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 public class AssetsServlet extends HttpServlet {
-
-    public AssetsServlet() {}
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         InputStream imageURL = getFilePath(request);
-        if (imageURL != null) {
-            try (BufferedInputStream inputStream = new BufferedInputStream(imageURL);
-                 BufferedOutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
-                int value;
-                while ((value = inputStream.read()) != -1) {
-                    outputStream.write(value);
-                }
-                outputStream.flush();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        try (BufferedInputStream inputStream = new BufferedInputStream(imageURL);
+             BufferedOutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
+
+            LOGGER.info("Copying bytes from BufferedInput stream to BufferedOutputStream is started.");
+            ByteStreams.copy(inputStream, outputStream);
+
+        } catch (IOException e) {
+            LOGGER.error("Error during read or write stream.", e);
+            throw new RuntimeException(e);
         }
     }
 
