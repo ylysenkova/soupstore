@@ -1,4 +1,4 @@
-package com.lysenkova.soapstore.dao.jdbc;
+package com.lysenkova.soapstore.dao.jdbc.itest;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 

@@ -1,5 +1,6 @@
-package com.lysenkova.soapstore.dao.jdbc;
+package com.lysenkova.soapstore.dao.jdbc.itest;
 
+import com.lysenkova.soapstore.dao.jdbc.JdbcProductDao;
 import com.lysenkova.soapstore.entity.Product;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class JdbcProductDaoTest {
+public class JdbcProductDaoITest {
     private JdbcProductDao productDao = new JdbcProductDao();
 
         @Before

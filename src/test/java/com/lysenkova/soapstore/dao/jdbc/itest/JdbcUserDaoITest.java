@@ -1,16 +1,16 @@
-package com.lysenkova.soapstore.dao.jdbc;
+package com.lysenkova.soapstore.dao.jdbc.itest;
 
+import com.lysenkova.soapstore.dao.jdbc.JdbcUserDao;
 import com.lysenkova.soapstore.entity.User;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class JdbcUserDaoTest {
+public class JdbcUserDaoITest {
     private JdbcUserDao userDao = new JdbcUserDao();
 
     @Before
