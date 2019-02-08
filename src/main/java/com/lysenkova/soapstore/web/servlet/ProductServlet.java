@@ -2,26 +2,36 @@ package com.lysenkova.soapstore.web.servlet;
 
 import com.lysenkova.soapstore.entity.Product;
 import com.lysenkova.soapstore.service.ProductService;
-import com.lysenkova.soapstore.service.impl.ProductServiceImpl;
-import com.lysenkova.soapstore.web.templater.PageGenerator;
+import com.lysenkova.soapstore.web.templater.ThymeleafConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.thymeleaf.context.WebContext;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class ProductServlet extends HttpServlet {
-    ProductService productService = new ProductServiceImpl();
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private ProductService productService;
+
+    public ProductServlet(ProductService productService) {
+        this.productService = productService;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String, Object> productMap = new HashMap<>();
+        LOGGER.info("Get request in ProductServlet");
 
-        List<Product> products = productService.getAll();
-        productMap.put("products", products);
-        response.getWriter().println(PageGenerator.instance().getPage("products.ftl", productMap));
         response.setStatus(HttpServletResponse.SC_OK);
+        List<Product> products = productService.getAll();
+        WebContext context = new WebContext(request, response, request.getServletContext());
+        context.setVariable("products", products);
+        ThymeleafConfig.process("products.html", context, response);
+
     }
+
 }

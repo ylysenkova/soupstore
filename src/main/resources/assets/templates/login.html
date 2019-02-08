@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/css/style.css"/>
+
+</head>
+<body id="login-page">
+<main id="login" class="login-form">
+    <h2 class="text-center">Login</h2>
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" name="login" required="required"/>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login"/>
+        </div>
+    </form>
+</main>
+</body>
+</html>

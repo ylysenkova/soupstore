@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.TimeZone;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -24,7 +23,7 @@ public class ProductMapperTest {
         when(mockResultSet.getLong("id")).thenReturn(1L);
         when(mockResultSet.getString("name")).thenReturn("Flower");
         when(mockResultSet.getDouble("price")).thenReturn(40.00);
-        when(mockResultSet.getString("image")).thenReturn("D:\\Photos\\SoapImageStorage\\elf.jpg");
+        when(mockResultSet.getString("image_ref")).thenReturn("D:\\Photos\\SoapImageStorage\\elf.jpg");
         LocalDateTime localDateTime = LocalDateTime.of(2018, Month.APRIL, 1, 11, 11, 11);
         Timestamp timestamp = Timestamp.valueOf(localDateTime);
         when(mockResultSet.getTimestamp("date")).thenReturn(timestamp);

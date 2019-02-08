@@ -6,5 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
-    List<Product> getAll() throws IOException;
+    List<Product> getAll();
+
+    void add(Product product);
 }

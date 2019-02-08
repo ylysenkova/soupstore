@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml11-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <title>soapstore</title>
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <nav class="navbar">
+                    <a class="navbar-brand" href="/products">
+                        <img src="https://img.etimg.com/thumb/msid-33836946,width-300,imgsize-49933,resizemode-4/soaps-detergents-wash-away-a-chunk-of-fmcg-growth.jpg"
+                             width="60"
+                             height="60" class="d-inline-block align-center">
+                        Soap World
+                    </a>
+                </nav>
+                <nav class="nav nav-inline justify-content-end">
+                    <a class="nav-link" href="/product/add">Add</a>
+                    <a class="nav-link" href="/login">Logout</a>
+                </nav>
+            </nav>
+        </div>
+    </header>
+    <main class="body">
+        <div class="container">
+            <div class="products d-flex">
+                <div class="products__element flex__element p-2" th:each="product : ${products}">
+                    <div class="img">
+                        <img class="img-top" th:src="${product.imgRef}" alt="picture">
+                    </div>
+                    <div class="content">
+                        <hr>
+                        <p class="products__field name" th:text="${product.name}"></p>
+                        <p class="products__field price" th:text="|Price: ${product.price}|"></p>
+                        <p class="products__field " th:hidden="${product.id}"></p>
+                        <p class="products__field date"
+                           th:text="|Production date: ${#temporals.format(product.localDateTime, 'dd-MM-yyyy')}|"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
